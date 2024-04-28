@@ -7,4 +7,4 @@ INCLUDE_TOP: False # drop dense layers from VGG16
 EPOCHS: 1
 CLASSES: 2
 WEIGHTS: imagenet
-LEARNING_RATE: 0.01
+LEARNING_RATE: 0.08
