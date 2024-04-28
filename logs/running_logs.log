@@ -1,1 +1,7 @@
 [2024-04-28 13:53:50,748: INFO: main: >>>>>> Starting pipeline <<<<<<]
+[2024-04-28 15:34:14,791: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-04-28 15:34:15,012: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-04-28 15:34:15,030: INFO: common: created directory at: artifacts]
+[2024-04-28 15:34:15,049: INFO: common: created directory at: artifacts/data_ingestion]
+[2024-04-28 15:34:15,050: INFO: 3172177572: Downloading data from https://drive.google.com/file/d/1vlhZ5c7abUKF8xXERIw6m9Te8fW7ohw3/view?usp=sharing into file artifacts/data_ingestion/data.zip]
+[2024-04-28 15:34:18,776: INFO: 3172177572: Downloaded data from https://drive.google.com/file/d/1vlhZ5c7abUKF8xXERIw6m9Te8fW7ohw3/view?usp=sharing into file artifacts/data_ingestion/data.zip]
