@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: cnnClassifier
+Version: 0.0.0
+Summary: A small python package for CNN app
+Home-page: https://github.com/hajni77/Kidney_isease_classification
+Author: hajni77
+Author-email: frecskahajni@gmail.com
+Project-URL: Bug Tracker, https://github.com/hajni77/Kidney_isease_classification/issues
+
+# Kidney_disease_classification
+End to end Deep learning project on Kidney Disease Classification
