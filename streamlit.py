@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from PIL import Image
-from cnnClassifier.pipeline.prediction import PredictionPipeline
+from src.cnnClassifier.pipeline.prediction import PredictionPipeline
 
 # Set page configuration
 st.set_page_config(
