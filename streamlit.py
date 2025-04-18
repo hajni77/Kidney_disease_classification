@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 from PIL import Image
-from src.cnnClassifier.pipeline.prediction import PredictionPipeline
+from cnnClassifier.pipeline.prediction import PredictionPipeline
 
 # Set page configuration
 st.set_page_config(
@@ -35,6 +35,13 @@ with st.sidebar:
     3. Model Training
     4. Model Evaluation
     """)
+    
+    # Add example image option in sidebar
+    st.header("Test with Example Image")
+    if st.button("Use Example Image"):
+        # Set session state to indicate example image should be used
+        st.session_state['use_example'] = True
+        st.experimental_rerun()
 
 # Function to make prediction
 def make_prediction(image_path):
@@ -42,8 +49,54 @@ def make_prediction(image_path):
     result = classifier.predict()
     return result[0]["image"]
 
-# When a file is uploaded
-if uploaded_file is not None:
+# Check if example image should be used (from session state)
+if 'use_example' not in st.session_state:
+    st.session_state['use_example'] = False
+
+# Handle example image if selected
+if st.session_state['use_example']:
+    example_image_path = "inputImage.jpg"  # Path to your example image
+    
+    if os.path.exists(example_image_path):
+        # Display the image
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.subheader("Example Image")
+            # Display example image
+            image = Image.open(example_image_path)
+            st.image(image, caption="Example Image", use_column_width=True)
+        
+        # Make prediction when button is clicked
+        if st.button("Classify Example Image"):
+            with st.spinner("Classifying..."):
+                # Get prediction
+                prediction = make_prediction(example_image_path)
+                
+                # Display result
+                with col2:
+                    st.subheader("Classification Result")
+                    if prediction == "Tumor":
+                        st.error(f"Prediction: {prediction}")
+                    else:
+                        st.success(f"Prediction: {prediction}")
+                    
+                    # Add additional information based on prediction
+                    if prediction == "Tumor":
+                        st.warning("This image shows signs of a kidney tumor. Please consult with a healthcare professional.")
+                    else:
+                        st.info("This image appears to show a normal kidney.")
+        
+        # Reset button to go back to upload mode
+        if st.button("Reset"):
+            st.session_state['use_example'] = False
+            st.experimental_rerun()
+    else:
+        st.error(f"Example image not found at {example_image_path}")
+        st.session_state['use_example'] = False
+
+# When a file is uploaded and not using example
+elif uploaded_file is not None:
     # Display the image
     col1, col2 = st.columns(2)
     
@@ -81,9 +134,9 @@ if uploaded_file is not None:
             # Clean up the temp file
             os.remove(temp_file_path)
 
-# Instructions when no file is uploaded
+# Instructions when no file is uploaded and not using example
 else:
-    st.info("Please upload an image to get started.")
+    st.info("Please upload an image or use the example image from the sidebar to get started.")
     
     # Example image section
     st.subheader("Example Results")
@@ -93,7 +146,7 @@ else:
     - **Normal**: Healthy kidney tissue
     - **Tumor**: Kidney tissue showing signs of tumor
     
-    Upload a kidney CT scan image to see the classification results.
+    Upload a kidney CT scan image or use the example image to see the classification results.
     """)
 
 # Footer
