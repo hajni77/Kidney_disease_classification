@@ -4,7 +4,7 @@ from cnnClassifier.pipeline.stage_02_prepare_base_model import PrepareBaseModelT
 from cnnClassifier.pipeline.stage_03_model_training import ModelTrainingPipeline
 from cnnClassifier.pipeline.stage_04_model_evaluation import EvaluationPipeline
 
-
+# TENSORFLOW 2.12.0
 logger.info(">>>>>> Starting pipeline <<<<<<")
 
 STAGE_NAME = "Data Ingestion stage"
