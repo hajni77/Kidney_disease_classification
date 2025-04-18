@@ -18,4 +18,3 @@ Flask-Cors
 gdown
 streamlit
 Pillow
--e .
