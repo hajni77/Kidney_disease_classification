@@ -41,7 +41,7 @@ with st.sidebar:
     if st.button("Use Example Image"):
         # Set session state to indicate example image should be used
         st.session_state['use_example'] = True
-        st.experimental_rerun()
+
 
 # Function to make prediction
 def make_prediction(image_path):
